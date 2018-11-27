@@ -31,7 +31,7 @@ android {
              * devices and x86 to run on the emulator. Your application should
              * list the ABIs most appropriate to minimize APK size (arm64-v8a recommended).
              */
-            abiFilters 'arm64-v8a','x86'
+            abiFilters 'arm64-v8a', 'x86'
         }
     }
     compileOptions {
@@ -51,9 +51,10 @@ android {
 }
 
 dependencies {
-  implementation "com.google.ar.sceneform:core:1.5.1"
-  implementation "com.android.support:appcompat-v7:27.1.1"
-  implementation "com.android.support:design:27.1.1"
+    implementation "com.google.ar.sceneform:core:1.5.1"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:design:27.1.1"
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 }
 
 apply plugin: 'com.google.ar.sceneform.plugin'
@@ -108,3 +109,5 @@ sceneform.asset('sampledata/models/Venus/Venus.gltf',
         'default',
         'sampledata/models/Venus/Venus.sfa',
         'src/main/assets/Venus')
+
+apply plugin: 'com.google.gms.google-services'

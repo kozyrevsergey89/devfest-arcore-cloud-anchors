@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "52618675261",
+    "firebase_url": "https://devfestsydney-ar.firebaseio.com",
+    "project_id": "devfestsydney-ar",
+    "storage_bucket": "devfestsydney-ar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52618675261:android:9990476f6bf0157f",
+        "android_client_info": {
+          "package_name": "com.kozyrev.devfest.ar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52618675261-a50n1nim32jdhnla0pc3254kk0dn4efh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kozyrev.devfest.ar",
+            "certificate_hash": "89714fd87dda1a442d6f6cfc58146a762344f0fa"
+          }
+        },
+        {
+          "client_id": "52618675261-7bunp9g3cu3ihsi14g4415kptgf3stvj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBODgP1k8_OtrFG27dhNu4CF2dEDksghZg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52618675261-7bunp9g3cu3ihsi14g4415kptgf3stvj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

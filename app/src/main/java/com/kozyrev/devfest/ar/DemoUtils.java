@@ -103,6 +103,7 @@ public class DemoUtils {
       session = new Session(activity);
       // IMPORTANT!!!  ArSceneView requires the `LATEST_CAMERA_IMAGE` non-blocking update mode.
       Config config = new Config(session);
+//      config.setCloudAnchorMode(Config.CloudAnchorMode.ENABLED);
       config.setUpdateMode(Config.UpdateMode.LATEST_CAMERA_IMAGE);
       session.configure(config);
     }
