@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kozyrev.devfest.ar.cloud_demo.DemoActivity"
+    android:padding="32dp">
+
+
+    <Button
+        android:id="@+id/button_go_solar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Solar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_go_host"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="148dp" />
+
+    <Button
+        android:id="@+id/button_go_host"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Host AR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_go_resolve"
+        app:layout_constraintTop_toBottomOf="@+id/button_go_solar"
+        tools:layout_editor_absoluteX="148dp" />
+
+    <Button
+        android:id="@+id/button_go_resolve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Resolve AR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_go_host"
+        tools:layout_editor_absoluteX="147dp" />
+</android.support.constraint.ConstraintLayout>
