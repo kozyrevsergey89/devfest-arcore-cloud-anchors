@@ -27,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -46,6 +47,8 @@ import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.samples.solarsystem.R;
+import com.kozyrev.devfest.ar.cloud_demo.SnackbarHelper;
+import com.kozyrev.devfest.ar.cloud_demo.StorageManager;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -96,6 +99,7 @@ public class SolarActivity extends AppCompatActivity {
     // CompletableFuture requires api level 24
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        storageManager = new StorageManager(this);
 
         if (!DemoUtils.checkIsSupportedDeviceOrFinish(this)) {
             // Not a supported device.
@@ -387,6 +391,7 @@ public class SolarActivity extends AppCompatActivity {
         solarControls.setLocalPosition(new Vector3(0.0f, 0.25f, 0.0f));
 
         View solarControlsView = solarControlsRenderable.getView();
+        setupLikes(solarControlsView);
         SeekBar orbitSpeedBar = solarControlsView.findViewById(R.id.orbitSpeedBar);
         orbitSpeedBar.setProgress((int) (solarSettings.getOrbitSpeedMultiplier() * 10.0f));
         orbitSpeedBar.setOnSeekBarChangeListener(
@@ -448,6 +453,28 @@ public class SolarActivity extends AppCompatActivity {
         createPlanet("Neptune", sun, 6.1f, 5f, neptuneRenderable, 0.074f);
 
         return base;
+    }
+
+    int localLikesCounter = 0;
+    private StorageManager storageManager;
+
+    private void setupLikes(View solarControlsView) {
+
+        View likesBtn = solarControlsView.findViewById(R.id.like_btn);
+        TextView likesAmount = solarControlsView.findViewById(R.id.like_counter);
+        likesAmount.setText(getText(R.string.likes_amount) + String.valueOf(localLikesCounter));
+        storageManager.listenToCurrentLikesCount(likesCount -> {
+            localLikesCounter = likesCount;
+            likesAmount.setText(getText(R.string.likes_amount) + String.valueOf(localLikesCounter));
+        });
+
+        likesBtn.setOnClickListener(v -> {
+            localLikesCounter++;
+            storageManager.incrementLikesCount(localLikesCounter);
+
+            likesAmount.setText(getText(R.string.likes_amount) + String.valueOf(localLikesCounter));
+
+        });
     }
 
     private Node createPlanet(

@@ -51,4 +51,20 @@
         android:layout_height="wrap_content"
         android:padding="4dp" />
 
+    <Button
+        android:id="@+id/like_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Like!"
+        android:padding="2dp"/>
+
+    <TextView
+        android:id="@+id/like_counter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/likes_amount"
+        android:textAlignment="center"
+        android:paddingTop="2dp" />
+
 </LinearLayout>

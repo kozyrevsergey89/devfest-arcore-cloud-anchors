@@ -31,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * Helper class for Firebase storage of cloud anchor IDs.
  */
-class StorageManager {
+public class StorageManager {
 
     /**
      * Listener for a new Cloud Anchor ID from the Firebase Database.
@@ -51,13 +51,14 @@ class StorageManager {
     private static final String KEY_ROOT_DIR = "shared_anchor_codelab_root";
     private static final String KEY_NEXT_SHORT_CODE = "next_short_code";
     private static final String KEY_PREFIX = "anchor;";
+    private static final String KEY_LIKES_COUNT = "likes_count";
     private static final int INITIAL_SHORT_CODE = 142;
     private final DatabaseReference rootRef;
 
     /**
      * Constructor that initializes the Firebase connection.
      */
-    StorageManager(Context context) {
+    public StorageManager(Context context) {
         FirebaseApp firebaseApp = FirebaseApp.initializeApp(context);
         rootRef = FirebaseDatabase.getInstance(firebaseApp).getReference().child(KEY_ROOT_DIR);
         DatabaseReference.goOnline();
@@ -128,5 +129,38 @@ class StorageManager {
                                 listener.onCloudAnchorIdAvailable(null);
                             }
                         });
+    }
+
+    public void incrementLikesCount(int localLikesCounter) {
+        rootRef.child(KEY_LIKES_COUNT).setValue(String.valueOf(localLikesCounter));
+    }
+
+    public void listenToCurrentLikesCount(LikesListener likesListener) {
+        if (likesListener == null) {
+            return;
+        }
+        rootRef
+                .child(KEY_LIKES_COUNT)
+                .addListenerForSingleValueEvent(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                // Listener invoked when the data is successfully read from Firebase.
+                                likesListener.onLikesCountAvailable(Integer.valueOf(String.valueOf(dataSnapshot.getValue())));
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+                                Log.e(
+                                        TAG,
+                                        "The Firebase operation for listenToCurrentLikesCount was cancelled.",
+                                        error.toException());
+
+                            }
+                        });
+    }
+
+    public interface LikesListener {
+        void onLikesCountAvailable(int likesCount);
     }
 }
